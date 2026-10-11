@@ -314,15 +314,20 @@ export class LinkedInAutomator {
   }
 
   /**
-   * Generates a personalized note under 200 characters from rotating templates
+   * Generates a personalized note under 200 characters from rotating templates.
+   * Supports dynamic variables: {firstName}, {company}, and {headline}
    */
-  public generateNote(firstName: string, company: string): string {
+  public generateNote(firstName: string, company: string, candidate?: CandidateCard): string {
     const templates = this.config.messaging.templates;
     const template = templates[randomInt(0, templates.length - 1)];
 
     let note = template
       .replace(/{firstName}/g, firstName)
       .replace(/{company}/g, company);
+
+    if (candidate && candidate.headline) {
+      note = note.replace(/{headline}/g, candidate.headline);
+    }
 
     // Strict safety check: free LinkedIn notes must be <= 200 chars
     if (note.length > 200) {
@@ -415,7 +420,7 @@ export class LinkedInAutomator {
     }
 
     const note = this.config.messaging.sendPersonalizedNote
-      ? this.generateNote(candidate.firstName, targetCompany)
+      ? this.generateNote(candidate.firstName, targetCompany, candidate)
       : '';
 
     console.log(`\n💌 Connection Note Draft (${note.length}/200 chars):`);

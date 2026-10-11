@@ -179,6 +179,77 @@ npm run start:auto
 
 ---
 
+## 💌 How Connection Messages Are Written & Customized
+
+The automator drafts and sends personalized connection notes automatically. Understanding how this works allows you to tailor your outreach to your exact profession and career goals.
+
+### 1. How It Works Under the Hood
+1. **Source of Truth**: Messages are defined in `config.json` under `"messaging.templates"`.
+2. **Dynamic Placeholders**: The automator parses the candidate's profile and replaces variables:
+   - `{firstName}`: The candidate's first name (e.g., "Sarah", "Alex").
+   - `{company}`: The verified company name (e.g., "Google", "Microsoft").
+   - `{headline}`: *(Optional)* The candidate's public headline.
+3. **Randomized Rotation**: On each invitation, the automator picks a random template from your list. This prevents your outreach from having a repetitive, robotic text pattern on LinkedIn.
+4. **Length Enforcement (200-Character Free Limit)**:
+   > ⚠️ **LinkedIn Rule**: Free LinkedIn connection notes have a strict cap of **200 characters**. Notes longer than 200 characters fail to send.  
+   The automator automatically measures the character count and safely trims at 197 characters with `...` if needed.
+5. **Human Keystroke Simulation (`humanType`)**:
+   Instead of an instant clipboard paste (`ctrl+v` or `page.fill()`), the script uses realistic randomized typing intervals (30ms–90ms per character) directly into the LinkedIn textarea, closely replicating real human fingers.
+
+---
+
+### 2. Customizing Templates for Your Domain
+
+You can easily replace the templates in `config.json` with templates tailored to your background:
+
+#### 💻 Software Engineers (Frontend / Backend / Fullstack)
+```json
+"templates": [
+  "Hi {firstName}, noticed your talent focus at {company}. As a Fullstack Dev (React/Node/Cloud), I'd love to connect and stay on your radar for roles!",
+  "Hello {firstName}, expanding my network with technical recruiting leaders at {company}. Would love to stay in touch for upcoming engineering roles!",
+  "Hi {firstName}, impressed by the engineering culture at {company}. As a software engineer, I'd love to connect and follow your team's journey!"
+]
+```
+
+#### 📊 Data Scientists & Machine Learning / AI Engineers
+```json
+"templates": [
+  "Hi {firstName}, noticed your talent focus at {company}. As an ML/AI Engineer (Python/PyTorch/LLMs), I'd love to connect and stay on your radar for roles!",
+  "Hello {firstName}, expanding my network with technical recruiters at {company}. Looking forward to connecting regarding Data Science & AI roles!",
+  "Hi {firstName}, admiring {company}'s work in AI and data systems. Would love to connect and stay in touch regarding upcoming engineering opportunities!"
+]
+```
+
+#### 🛠️ Engineering Managers & Tech Leads
+```json
+"templates": [
+  "Hi {firstName}, admire what you and your engineering team are building at {company}. Would love to connect with fellow tech leaders and stay in touch!",
+  "Hello {firstName}, expanding my network with passionate engineering leaders at {company}. Looking forward to following your journey!"
+]
+```
+
+#### 📱 Product Managers
+```json
+"templates": [
+  "Hi {firstName}, impressed by the product vision and user experience at {company}. Would love to connect and stay in touch with your team!",
+  "Hello {firstName}, expanding my network with technical recruiters and product leaders at {company}. Looking forward to staying on your radar for roles!"
+]
+```
+
+---
+
+### 3. Pairing With AI Coding Assistants (Antigravity, Cursor, Claude)
+
+If you are using an AI coding assistant like **Antigravity**, **Cursor**, or **Claude** to run this project:
+- **Ask Your AI to Customize Your Templates**:
+  > *"I am a Senior Backend Go/Kubernetes Engineer with 5 years of experience. Please update `config.json` with tailored connection notes under 200 characters targeting Cloud Recruiter roles."*
+- **Ask Your AI to Run Safe Dry-Runs**:
+  > *"Run a dry-run test with `npm run start:dry` and show me the generated drafts for the first 3 candidates so I can review them before sending."*
+- **Optional: Hooking Up a Live LLM Call**:
+  If you want per-candidate hyper-personalization, you can add an LLM API call directly inside `generateNote()` in `src/linkedin.ts` (e.g., using Gemini API or OpenAI API) to draft notes based on the candidate's exact headline and summary on the fly!
+
+---
+
 ## 🏢 Supported Company ID Mapping
 
 The automator maps common target tech companies to their official LinkedIn numeric IDs:
