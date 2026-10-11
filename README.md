@@ -76,7 +76,7 @@ linkedin-networker/
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/linkedin-networker.git
+git clone https://github.com/mahipower003/linkedin-networker.git
 cd linkedin-networker
 
 # Install dependencies
