@@ -1,0 +1,47 @@
+{
+  "safety": {
+    "maxDailyInvites": 20,
+    "minDelayBetweenInvitesSec": 45,
+    "maxDelayBetweenInvitesSec": 90,
+    "minProfileReadTimeSec": 6,
+    "maxProfileReadTimeSec": 15,
+    "stopOnWarning": true
+  },
+  "exclusions": {
+    "companies": [
+      "Current Employer Inc",
+      "Example Corp"
+    ],
+    "keywords": [
+      "intern",
+      "student"
+    ]
+  },
+  "targeting": {
+    "roles": [
+      "Technical Recruiter",
+      "Engineering Recruiter",
+      "Talent Acquisition Partner",
+      "Engineering Manager"
+    ],
+    "targetCompanies": [
+      "Google",
+      "Microsoft",
+      "Amazon",
+      "Meta",
+      "Uber",
+      "Salesforce",
+      "Stripe",
+      "Atlassian"
+    ],
+    "networkDegree": ""
+  },
+  "messaging": {
+    "sendPersonalizedNote": true,
+    "templates": [
+      "Hi {firstName}, noticed your talent focus at {company}. As a Fullstack Dev (React/Node/Cloud), I'd love to connect and stay on your radar for roles!",
+      "Hello {firstName}, expanding my network with technical recruiting leaders at {company}. Would love to stay in touch for upcoming engineering roles!",
+      "Hi {firstName}, impressed by the engineering culture at {company}. Would love to connect regarding technical hiring and opportunities!"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "linkedin-networker",
+  "version": "1.0.0",
+  "description": "Human-simulated LinkedIn career networking automation with anti-bot detection safeguards",
+  "main": "dist/index.js",
+  "scripts": {
+    "login": "tsx src/login.ts",
+    "start": "tsx src/index.ts",
+    "start:auto": "tsx src/index.ts --auto",
+    "start:dry": "tsx src/index.ts --dry-run",
+    "start:interactive": "tsx src/index.ts --interactive",
+    "build": "tsc"
+  },
+  "keywords": [
+    "playwright",
+    "linkedin",
+    "networking",
+    "career",
+    "automation",
+    "recruiting"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
